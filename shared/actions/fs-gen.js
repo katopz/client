@@ -15,8 +15,10 @@ export const downloadFinished = 'fs:downloadFinished'
 export const downloadStarted = 'fs:downloadStarted'
 export const fileTransferProgress = 'fs:fileTransferProgress'
 export const folderListLoad = 'fs:folderListLoad'
+export const filePreviewLoad = 'fs:filePreviewLoad'
 export const folderListLoaded = 'fs:folderListLoaded'
 export const openInFileUI = 'fs:openInFileUI'
+export const filePreviewLoaded = 'fs:filePreviewLoaded'
 export const sortSetting = 'fs:sortSetting'
 
 // Action Creators
@@ -47,6 +49,7 @@ export const createFileTransferProgress = (
   }>
 ) => ({error: false, payload, type: fileTransferProgress})
 export const createFolderListLoad = (payload: $ReadOnly<{path: Types.Path}>) => ({error: false, payload, type: folderListLoad})
+export const createFilePreviewLoad = (payload: $ReadOnly<{path: Types.Path}>) => ({error: false, payload, type: filePreviewLoad})
 export const createFolderListLoaded = (
   payload: $ReadOnly<{
     path: Types.Path,
@@ -54,6 +57,12 @@ export const createFolderListLoaded = (
   }>
 ) => ({error: false, payload, type: folderListLoaded})
 export const createOpenInFileUI = (payload: $ReadOnly<{path?: string}>) => ({error: false, payload, type: openInFileUI})
+export const createFilePreviewLoaded = (
+  payload: $ReadOnly<{
+    path: Types.Path,
+    meta: Types.PathItemMetadata,
+  }>
+) => ({error: false, payload, type: filePreviewLoaded})
 export const createSortSetting = (
   payload: $ReadOnly<{
     path: Types.Path,
@@ -68,8 +77,10 @@ export type DownloadPayload = More.ReturnType<typeof createDownload>
 export type DownloadStartedPayload = More.ReturnType<typeof createDownloadStarted>
 export type FileTransferProgressPayload = More.ReturnType<typeof createFileTransferProgress>
 export type FolderListLoadPayload = More.ReturnType<typeof createFolderListLoad>
+export type FilePreviewLoadPayload = More.ReturnType<typeof createFilePreviewLoad>
 export type FolderListLoadedPayload = More.ReturnType<typeof createFolderListLoaded>
 export type OpenInFileUIPayload = More.ReturnType<typeof createOpenInFileUI>
+export type FilePreviewLoadedPayload = More.ReturnType<typeof createFilePreviewLoaded>
 export type SortSettingPayload = More.ReturnType<typeof createSortSetting>
 
 // All Actions
@@ -81,7 +92,9 @@ export type Actions =
   | More.ReturnType<typeof createDownloadStarted>
   | More.ReturnType<typeof createFileTransferProgress>
   | More.ReturnType<typeof createFolderListLoad>
+  | More.ReturnType<typeof createFilePreviewLoad>
   | More.ReturnType<typeof createFolderListLoaded>
   | More.ReturnType<typeof createOpenInFileUI>
+  | More.ReturnType<typeof createFilePreviewLoaded>
   | More.ReturnType<typeof createSortSetting>
   | {type: 'common:resetStore', payload: void}

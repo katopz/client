@@ -82,6 +82,7 @@ export type _State = {
   pathUserSettings: I.Map<Path, PathUserSetting>,
   loadingPaths: I.Set<Path>,
   transfers: I.Map<string, TransferState>,
+  metas: I.Map<Path, PathItemMetadata>,
 }
 export type State = I.RecordOf<_State>
 
