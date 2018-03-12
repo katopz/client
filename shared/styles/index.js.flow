@@ -5,21 +5,26 @@ import * as CSS from './css'
 export {default as globalColors} from './colors'
 
 declare export var transition: (...properties: Array<string>) => Object
+
+// Flow gets very confused if I mark these as CSS._StylesCrossPlatform. This fixes the common pattern of using
+// spread like {...globalStyles.fontBold, width: 123} etc but it breaks using them directly like
+// style={globalStyles.fontBold}. It does work if you do style={{...globalStyles.fontBold}} though
+type _fakeFontDefSeeCommentsOnThisStyle = {fontFamily: 'OpenSans', fontWeight: '700', fontStyle: 'normal'}
 declare export var globalStyles: {
-  fillAbsolute: CSS._StylesCrossPlatform,
-  flexBoxCenter: CSS._StylesCrossPlatform,
-  flexBoxColumn: CSS._StylesCrossPlatform,
-  flexBoxRow: CSS._StylesCrossPlatform,
-  flexGrow: CSS._StylesCrossPlatform,
-  fontBold: CSS._StylesCrossPlatform,
-  fontRegular: CSS._StylesCrossPlatform,
-  fontSemibold: CSS._StylesCrossPlatform,
-  fontTerminal: CSS._StylesCrossPlatform,
-  fontTerminalSemibold: CSS._StylesCrossPlatform,
-  fullHeight: CSS._StylesCrossPlatform,
-  italic: CSS._StylesCrossPlatform,
+  fillAbsolute: {bottom: 0, left: 0, position: 'absolute', right: 0, top: 0},
+  flexBoxCenter: {alignItems: 'center', justifyContent: 'center'},
+  flexBoxColumn: {flexDirection: 'column'},
+  flexBoxRow: {flexDirection: 'row'},
+  flexGrow: {flexGrow: 1},
+  fontBold: {fontFamily: 'OpenSans', fontWeight: '700', fontStyle: 'normal'},
+  fontRegular: _fakeFontDefSeeCommentsOnThisStyle,
+  fontSemibold: _fakeFontDefSeeCommentsOnThisStyle,
+  fontTerminal: _fakeFontDefSeeCommentsOnThisStyle,
+  fontTerminalSemibold: _fakeFontDefSeeCommentsOnThisStyle,
+  fullHeight: {height: '100%'},
+  italic: _fakeFontDefSeeCommentsOnThisStyle,
   loadingTextStyle: CSS._StylesCrossPlatform,
-  rounded: CSS._StylesCrossPlatform,
+  rounded: {borderRadius: 3},
 }
 declare export var desktopStyles: {
   clickable?: CSS._StylesDesktop,
@@ -53,7 +58,7 @@ declare export var windowStyle: {
 }
 
 declare export function platformStyles({|
-  common?: ?CSS._StylesCrossPlatform,
+  common?: CSS._StylesCrossPlatform,
   isIOS?: CSS._StylesMobile,
   isAndroid?: CSS._StylesMobile,
   isMobile?: CSS._StylesMobile,

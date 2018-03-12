@@ -1,8 +1,8 @@
 // @flow
 type Color = null | string
-type Dimension = number | string
+type Dimension = string | number // TODO this is originally string | number but flow currently barfs on this. unclear why
 
-export type _StylesCrossPlatform = $ReadOnly<{
+export type _StylesCrossPlatform = {|
   alignContent?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'space-between' | 'space-around',
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline',
   alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline',
@@ -89,14 +89,14 @@ export type _StylesCrossPlatform = $ReadOnly<{
   >,
   width?: Dimension,
   zIndex?: number,
-}>
+|}
 
 export type StylesCrossPlatform =
   | null
   | _StylesCrossPlatform
   | $ReadOnlyArray<_StylesCrossPlatform | null | false | void>
 
-export type _StylesDesktop = $ReadOnly<{
+export type _StylesDesktop = {|
   alignContent?: string,
   alignItems?: string,
   alignSelf?: string,
@@ -171,7 +171,7 @@ export type _StylesDesktop = $ReadOnly<{
   borderTopRightRadius?: string,
   borderTopStyle?: string,
   borderTopWidth?: string,
-  borderWidth?: string,
+  borderWidth?: Dimension,
   bottom?: Dimension,
   boxDecorationBreak?: string,
   boxShadow?: string,
@@ -329,7 +329,7 @@ export type _StylesDesktop = $ReadOnly<{
   quotes?: string,
   rad?: string,
   resize?: string,
-  right?: string,
+  right?: Dimension,
   rubyAlign?: string,
   rubyMerge?: string,
   rubyPosition?: string,
@@ -390,12 +390,12 @@ export type _StylesDesktop = $ReadOnly<{
   wordWrap?: string,
   writingMode?: string,
   zIndex?: string,
-}>
+|}
 
 export type StylesDesktop = null | _StylesDesktop | $ReadOnlyArray<_StylesDesktop | null | false | void>
 
 // Mostly lifted from StyleSheetTypes
-export type _StylesMobile = $ReadOnly<{
+export type _StylesMobile = {|
   display?: 'none' | 'flex',
   width?: Dimension,
   height?: Dimension,
@@ -509,6 +509,6 @@ export type _StylesMobile = $ReadOnly<{
   resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat',
   tintColor?: Color,
   overlayColor?: string,
-}>
+|}
 
 export type StylesMobile = null | _StylesMobile | $ReadOnlyArray<_StylesMobile | null | false | void>

@@ -70,6 +70,7 @@ const styleTitle = {
 
 const stylePgpKeyString = platformStyles({
   common: {
+    ...globalStyles.fontTerminal,
     backgroundColor: globalColors.lightGrey,
     borderRadius: 3,
     color: globalColors.black_75,
@@ -79,7 +80,6 @@ const stylePgpKeyString = platformStyles({
     minHeight: 116,
     padding: 10,
     textAlign: 'left',
-    ...globalStyles.fontTerminal,
   },
   isElectron: {
     border: `solid 1px ${globalColors.black_10}`,

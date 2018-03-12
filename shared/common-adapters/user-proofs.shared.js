@@ -1,5 +1,5 @@
 // @flow
-import {globalColors, globalStyles} from '../styles'
+import {globalColors} from '../styles'
 import {
   normal as proofNormal,
   checking as proofChecking,

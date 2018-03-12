@@ -2,7 +2,7 @@
 import * as React from 'react'
 import type {Props} from './ignore.render'
 import {Confirm, Box, Text, Icon, Avatar, Usernames} from '../../common-adapters'
-import {globalColors} from '../../styles'
+import {globalColors, platformStyles} from '../../styles'
 
 const Render = ({isPrivate, users, avatar, onSubmit, onCancel}: Props) => {
   const theme = isPrivate ? 'private' : 'public'
@@ -48,15 +48,17 @@ const Render = ({isPrivate, users, avatar, onSubmit, onCancel}: Props) => {
   )
 }
 
-const styleAvatar = {
-  borderWidth: 3,
-  borderStyle: 'solid',
-  borderRadius: 19,
-  boxSizing: 'content-box',
-  position: 'absolute',
-  right: 0,
-  bottom: 0,
-}
+const styleAvatar = platformStyles({
+  isElectron: {
+    borderWidth: 3,
+    borderStyle: 'solid',
+    borderRadius: 19,
+    boxSizing: 'content-box',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+  },
+})
 
 const textColorThemed = {
   public: {

@@ -1,7 +1,7 @@
 // @flow
 import Icon from './icon'
 import * as React from 'react'
-import {globalStyles, globalColors, glamorous, desktopStyles} from '../styles'
+import {globalColors, glamorous, desktopStyles} from '../styles'
 
 import type {AvatarSize} from './avatar'
 import type {IconType} from './icon'

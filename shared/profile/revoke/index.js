@@ -1,7 +1,14 @@
 // @flow
 import * as React from 'react'
 import {Box, Text, Icon, Button, PlatformIcon, ButtonBar} from '../../common-adapters'
-import {globalStyles, globalColors, globalMargins, isMobile, desktopStyles} from '../../styles'
+import {
+  globalStyles,
+  globalColors,
+  globalMargins,
+  isMobile,
+  desktopStyles,
+  platformStyles,
+} from '../../styles'
 import {formatMessage, formatConfirmButton} from './index.shared'
 import {subtitle as platformSubtitle} from '../../util/platforms'
 
@@ -95,18 +102,17 @@ const styleContentContainer = {
   ...(isMobile ? {} : {textAlign: 'center'}),
 }
 
-const stylePlatformUsername = {
-  textDecorationLine: 'line-through',
-  ...(isMobile
-    ? {}
-    : {
-        textAlign: 'center',
-        overflowWrap: 'break-word',
-        maxWidth: 400,
-      }),
-  color: globalColors.red,
-}
-
+const stylePlatformUsername = platformStyles({
+  common: {
+    textDecorationLine: 'line-through',
+    color: globalColors.red,
+  },
+  isElectron: {
+    textAlign: 'center',
+    overflowWrap: 'break-word',
+    maxWidth: 400,
+  },
+})
 const stylePlatformSubtitle = {
   color: globalColors.black_20,
 }

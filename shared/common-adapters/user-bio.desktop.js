@@ -138,14 +138,14 @@ class BioRender extends Component<Props> {
               )}
             {userInfo.followersCount !== -1 && (
               <Box style={{...globalStyles.flexBoxRow, margin: 4}}>
-                <Text type="BodySmall" style={globalStyles.fontBold}>
+                <Text type="BodySmall" style={{...globalStyles.fontBold}}>
                   {userInfo.followersCount}
                   <Text type="BodySmall">&nbsp;Follower{userInfo.followersCount === 1 ? '' : 's'}</Text>
                 </Text>
                 <Text type="BodySmall">&nbsp; &middot; &nbsp;</Text>
                 <Text type="BodySmall">
                   Following&nbsp;
-                  <Text type="BodySmall" style={globalStyles.fontBold}>
+                  <Text type="BodySmall" style={{...globalStyles.fontBold}}>
                     {userInfo.followingCount}
                   </Text>
                 </Text>
