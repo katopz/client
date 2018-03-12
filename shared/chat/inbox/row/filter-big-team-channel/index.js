@@ -1,7 +1,7 @@
 // @flow
 import React, {PureComponent} from 'react'
-import {Box, Text, TextMixed, ClickableBox} from '../../../../common-adapters'
-import {globalStyles, globalColors, globalMargins, isMobile} from '../../../../styles'
+import {Box, Text, ClickableBox} from '../../../../common-adapters'
+import {globalStyles, globalColors, globalMargins, platformStyles} from '../../../../styles'
 import {TeamAvatar} from '../avatars'
 
 type Props = {
@@ -21,7 +21,7 @@ class FilterBigTeamChannel extends PureComponent<Props> {
           }}
         >
           <TeamAvatar teamname={this.props.teamname} isMuted={false} isSelected={false} />
-          <TextMixed
+          <Text
             type="BodySemibold"
             style={{
               ...teamnameStyle,
@@ -30,7 +30,7 @@ class FilterBigTeamChannel extends PureComponent<Props> {
             title={this.props.teamname}
           >
             {this.props.teamname}
-          </TextMixed>
+          </Text>
           <Text
             type="Body"
             style={{
@@ -47,27 +47,26 @@ class FilterBigTeamChannel extends PureComponent<Props> {
   }
 }
 
-const channelnameStyle = {
-  flexBasis: '70%',
-  ...(isMobile
-    ? {}
-    : {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      }),
-}
-const teamnameStyle = {
-  color: globalColors.darkBlue,
-  ...(isMobile
-    ? {}
-    : {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      }),
-}
-
+const channelnameStyle = platformStyles({
+  common: {
+    flexBasis: '70%',
+  },
+  isElectron: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+})
+const teamnameStyle = platformStyles({
+  common: {
+    color: globalColors.darkBlue,
+  },
+  isElectron: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+})
 const filteredRowStyle = {
   ...globalStyles.flexBoxRow,
   alignItems: 'center',

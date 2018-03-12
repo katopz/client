@@ -9,7 +9,7 @@ import {
   HeaderHoc,
   ClickableBox,
 } from '../../../common-adapters/index.native'
-import {globalColors, globalStyles, lineHeight} from '../../../styles'
+import {globalColors, globalStyles, desktopStyles} from '../../../styles'
 
 import type {Props} from './participant-rekey'
 
@@ -22,7 +22,7 @@ const Row = ({username, onUsernameClicked}) => (
         <Text
           type="BodySmall"
           backgroundMode="Terminal"
-          style={{lineHeight: lineHeight(17), color: globalColors.blue3_40}}
+          style={{lineHeight: 17, color: globalColors.blue3_40}}
         >
           Can rekey this chat by opening the Keybase app.
         </Text>
@@ -64,7 +64,7 @@ const containerStyle = {
 
 const rowStyle = {
   ...globalStyles.flexBoxRow,
-  ...globalStyles.clickable,
+  ...desktopStyles.clickable,
   minHeight: 56,
   alignItems: 'center',
 }

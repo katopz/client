@@ -4,8 +4,8 @@ import * as React from 'react'
 import openURL from '../../../util/open-url'
 import {RPCError} from '../../../util/errors'
 import {constantsStatusCode} from '../../../constants/types/rpc-gen'
-import {Box, Text, TextMixed, Markdown} from '../../../common-adapters'
-import {globalStyles, globalMargins, isMobile} from '../../../styles'
+import {Box, Text, Markdown} from '../../../common-adapters'
+import {globalStyles, globalMargins, isMobile, platformStyles} from '../../../styles'
 
 import type {Props} from '.'
 
@@ -27,14 +27,14 @@ const renderError = (error: RPCError) => {
       return (
         <Box style={styleContent}>
           <Box style={styleText}>
-            <TextMixed type="Body" style={centerText}>
+            <Text type="Body" style={centerText}>
               You can't authorize by passphrase, since you have established device or paper keys. You can go
               back and pick a device or paper key, or{' '}
               <Text type="BodyPrimaryLink" onClick={() => openURL('https://keybase.io/#account-reset')}>
                 reset your account entirely
               </Text>
               .
-            </TextMixed>
+            </Text>
           </Box>
         </Box>
       )
@@ -124,11 +124,11 @@ const renderError = (error: RPCError) => {
             <Markdown>{error.desc}</Markdown>
           ) : (
             <Box style={styleText}>
-              <TextMixed type="Body" style={centerText}>
+              <Text type="Body" style={centerText}>
                 Your PGP keychain has multiple keys installed, and we're not sure which one to use to
                 provision your account. Please run <Text type="TerminalInline">keybase login</Text> on the
                 command line to continue.
-              </TextMixed>
+              </Text>
             </Box>
           )}
         </Box>
@@ -137,10 +137,10 @@ const renderError = (error: RPCError) => {
       return (
         <Box style={styleContent}>
           <Box style={styleText}>
-            <TextMixed type="Body" style={centerText}>
+            <Text type="Body" style={centerText}>
               The username you provided doesn't exist on Keybase, please try logging in again with a different
               username.
-            </TextMixed>
+            </Text>
           </Box>
         </Box>
       )
@@ -149,13 +149,13 @@ const renderError = (error: RPCError) => {
         <Box style={styleContent}>
           <Box style={{...globalStyles.flexBoxColumn, ...styleText}}>
             <Text type="Body">Looks like that's a bad passphrase.</Text>
-            <TextMixed
+            <Text
               type="BodyPrimaryLink"
               onClick={() => openURL('https://keybase.io/#password-reset')}
               style={centerText}
             >
               Reset your passphrase?
-            </TextMixed>
+            </Text>
           </Box>
         </Box>
       )
@@ -165,10 +165,10 @@ const renderError = (error: RPCError) => {
       return (
         <Box style={styleContent}>
           <Box style={styleText}>
-            <TextMixed type="Body" style={centerText}>
+            <Text type="Body" style={centerText}>
               Sorry, your account is already established with a PGP public key, but we can't access the
               corresponding private key.
-            </TextMixed>
+            </Text>
           </Box>
           <Box style={{...styleText, marginTop: 16}}>
             <Text type="BodySemibold" style={{textAlign: 'left'}}>
@@ -239,10 +239,14 @@ const Render = ({onBack, error}: Props) => (
   </Container>
 )
 
-const centerText = {
-  textAlign: 'center',
-  ...(isMobile ? {} : {display: 'inline-block'}),
-}
+const centerText = platformStyles({
+  common: {
+    textAlign: 'center',
+  },
+  isElectron: {
+    display: 'inline-block',
+  },
+})
 
 const styleHeader = {
   alignSelf: 'center',

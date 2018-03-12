@@ -52,7 +52,7 @@ const TeamInfo = (props: Props) => (
               : props.openTeam ? 'Join team' : 'Request to join'
           }
           small={!isMobile}
-          style={{marginTop: globalStyles.tiny}}
+          style={{marginTop: globalMargins.tiny}}
           type={
             props.teamJoinSuccess || props.youHaveRequestedAccess
               ? props.openTeam ? 'PrimaryGreen' : 'Secondary'

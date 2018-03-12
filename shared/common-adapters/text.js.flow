@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import type {StylesCrossPlatform, StyleDesktop} from '../styles'
+import type {StylesCrossPlatform} from '../styles'
 
 type Background =
   | 'Announcements'
@@ -40,21 +40,21 @@ type TextType =
   | 'TerminalEmpty'
   | 'TerminalInline'
 
-type _Props = {
+type Props = {
+  allowFontScaling?: boolean,
+  allowHighlightText?: boolean, // if true, highlighttext through refs works
   backgroundMode?: Background,
   children?: React.Node,
   className?: string,
   lineClamp?: number,
   onClick?: ?(e: SyntheticEvent<>) => void | ?() => void,
   onClickURL?: ?string,
-  onPress?: void,
   onLongPress?: () => void,
+  onPress?: void,
   selectable?: boolean,
   style?: StylesCrossPlatform,
-  type: TextType,
   title?: ?string,
-  allowHighlightText?: boolean, // if true, highlighttext through refs works
-  allowFontScaling?: boolean,
+  type: TextType,
   underline?: boolean,
 }
 
@@ -66,11 +66,7 @@ type MetaType = {
   isTerminal?: true,
 }
 
-// A convenience to expose if we might pass desktop only styles in, desktop should be a superset of crossplatform
-declare class TextMixed extends React.Component<Props & {style?: StyleDesktop}> {
-  highlightText: () => void;
-}
-declare class Text extends React.Component<_Props & {style?: StyleCrossPlatform}> {
+declare class Text extends React.Component<Props> {
   highlightText: () => void;
 }
 declare function getStyle(
@@ -85,4 +81,3 @@ export {getStyle}
 export type {Background, MetaType, Props, TextType}
 
 export default Text
-export {TextMixed}

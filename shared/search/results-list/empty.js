@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
-import {Box, Text, TextMixed} from '../../common-adapters'
-import {globalStyles, isMobile} from '../../styles'
+import {Box, Text} from '../../common-adapters'
+import {globalStyles, platformStyles} from '../../styles'
 
 const owl = `
  ,___,
@@ -13,16 +13,20 @@ function EmptyResults({style}: {style?: Object}) {
   return (
     <Box style={{...globalStyles.flexBoxCenter, ...globalStyles.flexBoxColumn, height: 256, ...style}}>
       <Text type="BodySmallSemibold">Sorry, no humans match this.</Text>
-      <TextMixed type="BodySmallSemibold" style={owlStyle}>
+      <Text type="BodySmallSemibold" style={owlStyle}>
         {owl}
-      </TextMixed>
+      </Text>
     </Box>
   )
 }
 
-const owlStyle = {
-  textAlign: 'center',
-  ...(isMobile ? {} : {whiteSpace: 'pre'}),
-}
+const owlStyle = platformStyles({
+  common: {
+    textAlign: 'center',
+  },
+  isElectron: {
+    whiteSpace: 'pre',
+  },
+})
 
 export default EmptyResults

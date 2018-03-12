@@ -4,30 +4,37 @@ import * as React from 'react'
 import Text from './text'
 import omit from 'lodash/omit'
 import type {Props} from './meta'
-import {globalColors, lineHeight, isAndroid} from '../styles'
+import {globalColors, platformStyles} from '../styles'
 
 const Meta = ({title, style}: Props) => (
   <Box
-    style={{
-      borderRadius: 4,
-      paddingLeft: 2,
-      paddingRight: 2,
-      paddingTop: isAndroid ? 1 : 2,
-      paddingBottom: 1,
-      alignSelf: 'flex-start',
-      ...omit(style, ['color']),
-    }}
+    style={platformStyles({
+      common: {
+        borderRadius: 4,
+        paddingLeft: 2,
+        paddingRight: 2,
+        paddingBottom: 1,
+        paddingTop: 2,
+        alignSelf: 'flex-start',
+        ...omit(style, ['color']),
+      },
+      isAndroid: {
+        paddingTop: 1,
+      },
+    })}
   >
     <Text
       type="Header"
-      style={{
-        color: (style && style.color) || globalColors.white,
-        fontSize: 12,
-        fontWeight: '700',
-        height: 15,
-        lineHeight: lineHeight(15),
-        alignSelf: 'center',
-      }}
+      style={platformStyles({
+        isMobile: {
+          color: (style && style.color) || globalColors.white,
+          fontSize: 12,
+          fontWeight: '700',
+          height: 15,
+          lineHeight: 15,
+          alignSelf: 'center',
+        },
+      })}
     >
       {title && title.toUpperCase()}
     </Text>

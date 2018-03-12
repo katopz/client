@@ -104,7 +104,7 @@ function proofStatusIcon(proof: Proof): ?IconType {
 function proofNameStyle(proof: Proof) {
   return {
     color: proofColor(proof, false),
-    ...(proof.meta === metaDeleted ? globalStyles.textDecoration('line-through') : {}),
+    ...(proof.meta === metaDeleted ? {textDecorationLine: 'line-through'} : {}),
     ...(['btc', 'pgp'].includes(proof.type) ? {fontSize: 13} : {}),
   }
 }

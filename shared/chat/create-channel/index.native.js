@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import {Avatar, Box, Button, HeaderHoc, Input, Text, ButtonBar} from '../../common-adapters'
-import {globalStyles, globalColors, globalMargins, lineHeight} from '../../styles'
+import {globalStyles, globalColors, globalMargins} from '../../styles'
 import {renameProp, compose, withProps} from 'recompose'
 
 import type {Props} from '.'
@@ -64,7 +64,7 @@ const Header = (props: Props) => (
       <Avatar isTeam={true} teamname={props.teamname} size={12} />
       <Text
         type="BodySmallSemibold"
-        style={{fontSize: 11, lineHeight: lineHeight(15), marginLeft: globalMargins.xtiny}}
+        style={{fontSize: 11, lineHeight: 15, marginLeft: globalMargins.xtiny}}
         lineClamp={1}
       >
         {props.teamname}

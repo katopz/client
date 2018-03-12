@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import {Box, Text, Icon, Button, PlatformIcon, ButtonBar} from '../../common-adapters'
-import {globalStyles, globalColors, globalMargins, isMobile} from '../../styles'
+import {globalStyles, globalColors, globalMargins, isMobile, desktopStyles} from '../../styles'
 import {formatMessage, formatConfirmButton} from './index.shared'
 import {subtitle as platformSubtitle} from '../../util/platforms'
 
@@ -57,14 +57,14 @@ const styleContainer = {
   position: 'relative',
   paddingTop: globalMargins.large,
   paddingBottom: globalMargins.large,
-  ...globalStyles.scrollable,
+  ...desktopStyles.scrollable,
 }
 
 const styleClose = {
   position: 'absolute',
   top: globalMargins.small,
   right: globalMargins.small,
-  ...globalStyles.clickable,
+  ...desktopStyles.clickable,
   color: globalColors.black_10,
 }
 
@@ -96,7 +96,7 @@ const styleContentContainer = {
 }
 
 const stylePlatformUsername = {
-  ...globalStyles.textDecoration('line-through'),
+  textDecorationLine: 'line-through',
   ...(isMobile
     ? {}
     : {

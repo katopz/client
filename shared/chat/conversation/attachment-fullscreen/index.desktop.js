@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
-import {Box, Icon, Text, TextMixed, PopupDialog, ProgressBar} from '../../../common-adapters'
-import {globalColors, globalMargins, globalStyles, fileUIName} from '../../../styles'
+import {Box, Icon, Text, PopupDialog, ProgressBar} from '../../../common-adapters'
+import {globalColors, globalMargins, globalStyles, fileUIName, platformStyles} from '../../../styles'
 
 import type {Props} from '.'
 
@@ -36,28 +36,24 @@ const Fullscreen = (props: Props) => {
           {!!props.progressLabel && <ProgressBar ratio={props.progress} />}
           {!props.progressLabel &&
             props.onDownloadAttachment && (
-              <TextMixed
-                type="BodySmall"
-                style={{color: globalColors.black_60, cursor: 'pointer'}}
-                onClick={props.onDownloadAttachment}
-              >
+              <Text type="BodySmall" style={linkStyle} onClick={props.onDownloadAttachment}>
                 Download
-              </TextMixed>
+              </Text>
             )}
           {props.onShowInFinder && (
-            <TextMixed
-              type="BodySmall"
-              style={{color: globalColors.black_60, cursor: 'pointer'}}
-              onClick={props.onShowInFinder}
-            >
+            <Text type="BodySmall" style={linkStyle} onClick={props.onShowInFinder}>
               Show in {fileUIName}
-            </TextMixed>
+            </Text>
           )}
         </Box>
       </Box>
     </PopupDialog>
   )
 }
+
+const linkStyle = platformStyles({
+  isElectron: {color: globalColors.black_60, cursor: 'pointer'},
+})
 
 const containerStyle = {
   ...globalStyles.flexBoxColumn,

@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react'
-import {Avatar, BackButton, Box, Button, Icon, Text, TextMixed} from '../common-adapters'
+import {Avatar, BackButton, Box, Button, Icon, Text} from '../common-adapters'
 import capitalize from 'lodash/capitalize'
-import {globalColors, globalStyles, globalMargins, lineHeight} from '../styles'
+import {globalColors, globalStyles, globalMargins, platformStyles, desktopStyles} from '../styles'
 import {platformToLogo24} from '../constants/search'
 import {AVATAR_SIZE, HEADER_SIZE} from '../profile/index.desktop'
 
@@ -34,9 +34,9 @@ const NonUserRender = (props: Props) => (
               {props.fullname}
             </Text>
           )}
-          <TextMixed type="BodySmall" style={styleServiceLabel}>
+          <Text type="BodySmall" style={styleServiceLabel}>
             {props.serviceName} user
-          </TextMixed>
+          </Text>
           <Button
             style={{marginTop: globalMargins.medium}}
             onClick={props.onStartChat}
@@ -98,7 +98,7 @@ const styleRightColumn = {
 
 const styleUsernameRow = {
   ...globalStyles.flexBoxRow,
-  ...globalStyles.clickable,
+  ...desktopStyles.clickable,
   alignItems: 'center',
   marginTop: globalMargins.tiny,
 }
@@ -112,12 +112,16 @@ const styleFullname = {
   marginTop: 2,
 }
 
-const styleServiceLabel = {
-  fontSize: 11,
-  lineHeight: lineHeight(14),
-  marginTop: globalMargins.xtiny,
-  textTransform: 'uppercase',
-}
+const styleServiceLabel = platformStyles({
+  common: {
+    fontSize: 11,
+    lineHeight: 14,
+    marginTop: globalMargins.xtiny,
+  },
+  isElectron: {
+    textTransform: 'uppercase',
+  },
+})
 
 const styleDetails = {
   marginLeft: globalMargins.medium,

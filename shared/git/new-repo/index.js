@@ -1,18 +1,7 @@
 // @flow
 import * as React from 'react'
-import {
-  Avatar,
-  Box,
-  Text,
-  TextMixed,
-  Icon,
-  Input,
-  Button,
-  Dropdown,
-  Checkbox,
-  ScrollView,
-} from '../../common-adapters'
-import {globalStyles, globalMargins, globalColors, isMobile} from '../../styles'
+import {Avatar, Box, Text, Icon, Input, Button, Dropdown, Checkbox, ScrollView} from '../../common-adapters'
+import {globalStyles, globalMargins, globalColors, isMobile, platformStyles} from '../../styles'
 
 type Props = {
   error: ?Error,
@@ -75,22 +64,22 @@ class NewRepo extends React.Component<Props, State> {
         }}
       >
         <Avatar isTeam={true} teamname={item} size={16} style={{marginRight: globalMargins.tiny}} />
-        <TextMixed
+        <Text
           type="Header"
-          style={{
-            width: '100%',
-            display: 'block',
-            overflow: 'hidden',
-            ...(isMobile
-              ? {}
-              : {
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }),
-          }}
+          style={platformStyles({
+            common: {
+              width: '100%',
+              overflow: 'hidden',
+            },
+            isElectron: {
+              display: 'block',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            },
+          })}
         >
           {item}
-        </TextMixed>
+        </Text>
       </Box>
     )
   }

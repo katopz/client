@@ -2,7 +2,7 @@
 type Color = null | string
 type Dimension = number | string
 
-type _StylesCrossPlatform = {|
+export type _StylesCrossPlatform = $ReadOnly<{
   alignContent?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'space-between' | 'space-around',
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline',
   alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline',
@@ -89,14 +89,14 @@ type _StylesCrossPlatform = {|
   >,
   width?: Dimension,
   zIndex?: number,
-|}
+}>
 
 export type StylesCrossPlatform =
   | null
   | _StylesCrossPlatform
-  | Array<_StylesCrossPlatform | null | false | void>
+  | $ReadOnlyArray<_StylesCrossPlatform | null | false | void>
 
-type _StylesDesktop = {|
+export type _StylesDesktop = $ReadOnly<{
   alignContent?: string,
   alignItems?: string,
   alignSelf?: string,
@@ -111,7 +111,6 @@ type _StylesDesktop = {|
   animationPlayState?: string,
   animationTimingFunction?: string,
   backdropFilter?: string,
-  webkitBackdropFilter?: string,
   backfaceVisibility?: string,
   background?: string,
   backgroundAttachment?: string,
@@ -159,7 +158,7 @@ type _StylesDesktop = {|
   borderLeftColor?: string,
   borderLeftStyle?: string,
   borderLeftWidth?: string,
-  borderRadius?: string,
+  borderRadius?: Dimension,
   borderRight?: string,
   borderRightColor?: string,
   borderRightStyle?: string,
@@ -173,7 +172,7 @@ type _StylesDesktop = {|
   borderTopStyle?: string,
   borderTopWidth?: string,
   borderWidth?: string,
-  bottom?: string,
+  bottom?: Dimension,
   boxDecorationBreak?: string,
   boxShadow?: string,
   boxSizing?: string,
@@ -185,7 +184,6 @@ type _StylesDesktop = {|
   clip?: string,
   clipPath?: string,
   color?: string,
-  columns?: string,
   columnCount?: string,
   columnFill?: string,
   columnGap?: string,
@@ -195,6 +193,7 @@ type _StylesDesktop = {|
   columnRuleWidth?: string,
   columnSpan?: string,
   columnWidth?: string,
+  columns?: string,
   contain?: string,
   content?: string,
   counterIncrement?: string,
@@ -204,7 +203,7 @@ type _StylesDesktop = {|
   display?: string,
   emptyCells?: string,
   filter?: string,
-  flex?: string,
+  flex?: Dimension,
   flexBasis?: string,
   flexDirection?: string,
   flexFlow?: string,
@@ -217,7 +216,7 @@ type _StylesDesktop = {|
   fontFeatureSettings?: string,
   fontKerning?: string,
   fontLanguageOverride?: string,
-  fontSize?: string,
+  fontSize?: number,
   fontSizeAdjust?: string,
   fontStretch?: string,
   fontStyle?: string,
@@ -238,27 +237,27 @@ type _StylesDesktop = {|
   gridAutoPosition?: string,
   gridAutoRows?: string,
   gridColumn?: string,
-  gridColumnStart?: string,
   gridColumnEnd?: string,
+  gridColumnStart?: string,
   gridRow?: string,
-  gridRowStart?: string,
   gridRowEnd?: string,
+  gridRowStart?: string,
   gridTemplate?: string,
   gridTemplateAreas?: string,
-  gridTemplateRows?: string,
   gridTemplateColumns?: string,
-  height?: string,
+  gridTemplateRows?: string,
+  height?: Dimension,
   hyphens?: string,
+  imageOrientation?: string,
   imageRendering?: string,
   imageResolution?: string,
-  imageOrientation?: string,
   imeMode?: string,
   inherit?: string,
   initial?: string,
   inlineSize?: string,
   isolation?: string,
   justifyContent?: string,
-  left?: string,
+  left?: Dimension,
   letterSpacing?: string,
   lineBreak?: string,
   lineHeight?: string,
@@ -266,26 +265,26 @@ type _StylesDesktop = {|
   listStyleImage?: string,
   listStylePosition?: string,
   listStyleType?: string,
-  margin?: string,
+  margin?: Dimension,
   marginBlockEnd?: string,
   marginBlockStart?: string,
-  marginBottom?: string,
+  marginBottom?: Dimension,
   marginInlineEnd?: string,
   marginInlineStart?: string,
-  marginLeft?: string,
-  marginRight?: string,
-  marginTop?: string,
+  marginLeft?: Dimension,
+  marginRight?: Dimension,
+  marginTop?: Dimension,
   marks?: string,
   mask?: string,
   maskType?: string,
   maxBlockSize?: string,
-  maxHeight?: string,
+  maxHeight?: Dimension,
   maxInlineSize?: string,
-  maxWidth?: string,
+  maxWidth?: Dimension,
   minBlockSize?: string,
-  minHeight?: string,
+  minHeight?: Dimension,
   minInlineSize?: string,
-  minWidth?: string,
+  minWidth?: Dimension,
   mixBlendMode?: string,
   mozTransform?: string,
   mozTransformOrigin?: string,
@@ -311,15 +310,15 @@ type _StylesDesktop = {|
   overflowWrap?: string,
   overflowX?: string,
   overflowY?: string,
-  padding?: string,
+  padding?: Dimension,
   paddingBlockEnd?: string,
   paddingBlockStart?: string,
-  paddingBottom?: string,
+  paddingBottom?: Dimension,
   paddingInlineEnd?: string,
   paddingInlineStart?: string,
-  paddingLeft?: string,
-  paddingRight?: string,
-  paddingTop?: string,
+  paddingLeft?: Dimension,
+  paddingRight?: Dimension,
+  paddingTop?: Dimension,
   pageBreakAfter?: string,
   pageBreakBefore?: string,
   pageBreakInside?: string,
@@ -343,8 +342,8 @@ type _StylesDesktop = {|
   shapeImageThreshold?: string,
   shapeMargin?: string,
   shapeOutside?: string,
-  tableLayout?: string,
   tabSize?: string,
+  tableLayout?: string,
   textAlign?: string,
   textAlignLast?: string,
   textCombineUpright?: string,
@@ -359,7 +358,7 @@ type _StylesDesktop = {|
   textShadow?: string,
   textTransform?: string,
   textUnderlinePosition?: string,
-  top?: string,
+  top?: Dimension,
   touchAction?: string,
   transform?: string,
   transformOrigin?: string,
@@ -374,6 +373,7 @@ type _StylesDesktop = {|
   unicodeRange?: string,
   verticalAlign?: string,
   visibility?: string,
+  webkitBackdropFilter?: string,
   webkitOverflowScrolling?: string,
   webkitTransform?: string,
   webkitTransformOrigin?: string,
@@ -383,19 +383,19 @@ type _StylesDesktop = {|
   webkitTransitionTimingFunction?: string,
   whiteSpace?: string,
   widows?: string,
-  width?: string,
+  width?: Dimension,
   willChange?: string,
   wordBreak?: string,
   wordSpacing?: string,
   wordWrap?: string,
   writingMode?: string,
   zIndex?: string,
-|}
+}>
 
-export type StylesDesktop = null | _StylesDesktop | Array<_StylesDesktop | null | false | void>
+export type StylesDesktop = null | _StylesDesktop | $ReadOnlyArray<_StylesDesktop | null | false | void>
 
 // Mostly lifted from StyleSheetTypes
-type _StylesMobile = {|
+export type _StylesMobile = $ReadOnly<{
   display?: 'none' | 'flex',
   width?: Dimension,
   height?: Dimension,
@@ -509,6 +509,6 @@ type _StylesMobile = {|
   resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat',
   tintColor?: Color,
   overlayColor?: string,
-|}
+}>
 
-export type StylesMobile = null | _StylesMobile | Array<_StylesMobile | null | false | void>
+export type StylesMobile = null | _StylesMobile | $ReadOnlyArray<_StylesMobile | null | false | void>

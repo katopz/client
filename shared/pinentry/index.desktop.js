@@ -1,6 +1,6 @@
 // @flow
 import React, {Component} from 'react'
-import {globalStyles, globalColors, globalMargins} from '../styles'
+import {globalStyles, globalColors, globalMargins, desktopStyles} from '../styles'
 import {autoResize} from '../desktop/remote/util'
 import {Button, FormWithCheckbox, Header, Text, Box, Icon} from '../common-adapters'
 import * as RPCTypes from '../constants/types/rpc-gen'
@@ -142,7 +142,7 @@ Pinentry.defaultProps = {
 }
 
 const checkboxStyle = {
-  ...globalStyles.topMost,
+  zIndex: 9999,
   color: globalColors.black,
   marginLeft: 10,
 }

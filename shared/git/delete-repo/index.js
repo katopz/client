@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import {Avatar, Box, Text, TextMixed, Icon, Input, Button, Checkbox, ScrollView} from '../../common-adapters'
+import {Avatar, Box, Text, Icon, Input, Button, Checkbox, ScrollView} from '../../common-adapters'
 import {globalStyles, globalMargins, globalColors, isMobile} from '../../styles'
 
 type Props = {
@@ -72,12 +72,9 @@ class DeleteRepo extends React.Component<Props, State> {
                 style={{marginRight: globalMargins.xtiny}}
               />
             )}
-            <TextMixed
-              type="BodyError"
-              style={isMobile ? {textDecorationLine: 'line-through'} : {textDecoration: 'line-through'}}
-            >
+            <Text type="BodyError" style={{textDecorationLine: 'line-through'}}>
               {this.props.teamname ? `${this.props.teamname}/${this.props.name}` : this.props.name}
-            </TextMixed>
+            </Text>
           </Box>
           <Text type="Body" style={{marginBottom: 27}}>
             {this.props.teamname

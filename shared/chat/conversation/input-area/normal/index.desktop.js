@@ -1,8 +1,8 @@
 // @flow
 /* eslint-env browser */
 import React, {Component} from 'react'
-import {Box, Icon, Input, Text, TextMixed} from '../../../../common-adapters'
-import {globalColors, globalMargins, globalStyles} from '../../../../styles'
+import {Box, Icon, Input, Text} from '../../../../common-adapters'
+import {globalColors, globalMargins, globalStyles, platformStyles} from '../../../../styles'
 import {Picker} from 'emoji-mart'
 import {backgroundImageFn} from '../../../../common-adapters/emoji'
 import {compose, withHandlers, withStateHandlers} from 'recompose'
@@ -179,13 +179,9 @@ class ConversationInput extends Component<InputProps> {
           >
             {isTyping(this.props.typing)}
           </Text>
-          <TextMixed
-            type="BodySmall"
-            style={{...styleFooter, textAlign: 'right'}}
-            onClick={this.props.inputFocus}
-          >
+          <Text type="BodySmall" style={{...styleFooter, textAlign: 'right'}} onClick={this.props.inputFocus}>
             *bold*, _italics_, `code`, >quote
-          </TextMixed>
+          </Text>
         </Box>
       </Box>
     )
@@ -281,15 +277,17 @@ const styleIcon = {
   paddingTop: globalMargins.tiny,
 }
 
-const styleFooter = {
-  color: globalColors.black_20,
-  cursor: 'text',
-  marginBottom: globalMargins.xtiny,
-  marginLeft: globalMargins.tiny,
-  marginRight: globalMargins.tiny,
-  marginTop: 0,
-  textAlign: 'right',
-}
+const styleFooter = platformStyles({
+  isElectron: {
+    color: globalColors.black_20,
+    cursor: 'text',
+    marginBottom: globalMargins.xtiny,
+    marginLeft: globalMargins.tiny,
+    marginRight: globalMargins.tiny,
+    marginTop: 0,
+    textAlign: 'right',
+  },
+})
 
 const cancelStyle = {
   marginRight: globalMargins.tiny,

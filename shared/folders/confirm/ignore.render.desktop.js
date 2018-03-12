@@ -13,7 +13,6 @@ const Render = ({isPrivate, users, avatar, onSubmit, onCancel}: Props) => {
       <Avatar
         size={32}
         username={avatar}
-        // $FlowIssue passing desktop only style boxSizing in desktop file is ok
         style={{
           ...styleAvatar,
           borderColor: borderColorThemed[theme],
